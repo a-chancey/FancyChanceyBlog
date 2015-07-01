@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :abouts
   resources :posts do
     resources :comments, only: [:create]
   end
@@ -6,8 +7,8 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'posts#index'
-
+  root 'posts#index'
+  get "/about" => 'abouts#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
