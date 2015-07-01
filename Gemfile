@@ -38,6 +38,10 @@ group :production do
   gem 'rails_12factor'
 end
 
+group :test do
+  gem 'capybara'
+end
+
 group :development, :test do
   gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
