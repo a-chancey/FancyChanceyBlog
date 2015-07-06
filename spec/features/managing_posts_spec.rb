@@ -23,17 +23,33 @@ feature 'Managing blog posts' do
             fill_in 'Password', with: password
             click_button 'Login'
         end
+        context 'with an existing blog post' do
+            background do
+                @post = Post.create(title: 'Awesome Blog Post', body: 'Lorem ipsum dolor sit amet')
+            end
+            
+            scenario 'Posting a new blog' do
+                click_link 'Posts'
+                click_link 'New Post'
         
-        scenario 'Posting a new blog' do
-            click_link 'Posts'
-            click_link 'New Post'
+                fill_in 'post_title', with: 'New Blog Post'
+                fill_in 'post_body', with: 'This post was made from the admin interface'
+                click_button 'Create Post'
         
-            fill_in 'post_title', with: 'New Blog Post'
-            fill_in 'post_body', with: 'This post was made from the admin interface'
-            click_button 'Create Post'
-        
-            expect(page).to have_content 'This post was made from the admin interface'
+                expect(page).to have_content 'This post was made from the admin interface'
+            end
+            
+
+            scenario 'Publishing an existing blog' do
+                visit admin_post_path(@post)
+                click_link 'Edit Post'
+
+                check 'Published'
+                click_button 'Update Post'
+
+                expect(page).to have_content 'Post was successfully updated'
+                expect(Post.last.published?).to be true
+            end
         end
-    
     end
 end
