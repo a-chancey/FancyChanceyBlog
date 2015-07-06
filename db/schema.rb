@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706153003) do
+ActiveRecord::Schema.define(version: 20150706161933) do
 
   create_table "abouts", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20150706153003) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.boolean  "published",  default: false
+    t.integer  "author_id"
   end
 
 end

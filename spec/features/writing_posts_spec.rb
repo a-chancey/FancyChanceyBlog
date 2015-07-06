@@ -17,18 +17,21 @@ feature 'Writing blog posts' do
        click_button 'Login'
     end
     
-    scenario 'Writing a blog post in markdown' do
-       click_link 'Posts'
-       click_link 'New Post'
-       fill_in 'post_title', with: 'New Blog Post'
-       fill_in 'post_body', with: "[Example.com link](http://example.com)"
-       check 'post_published'
-       click_button 'Create Post'
-       
-       visit post_path(Post.last)
-       
-       page.should have_link 'Example.com link'
-    end
+   scenario 'Writing a blog post in markdown' do
+    click_link 'Posts'
+    click_link 'New Post'
+    select('admin@example.com', from: 'Author')
+
+    fill_in 'post_title', with: 'New Blog Post'
+    fill_in 'post_body', with: "[Example.com link](http://example.com/)"
+    check 'post_published'
+    click_button 'Create Post'
+
+    visit post_path(Post.last)
+
+    page.should have_link 'Example.com link'
+    expect(page).to have_content 'Posted by: admin@example.com'
+  end
     
     
 end
