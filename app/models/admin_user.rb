@@ -6,9 +6,9 @@ class AdminUser < ActiveRecord::Base
          
          
          has_many :posts
-         
+         validates_presence_of :full_name
          def name
-           email
+           full_name
          end
          
 end
