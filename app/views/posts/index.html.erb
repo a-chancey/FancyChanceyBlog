@@ -2,5 +2,7 @@
 
 <h1>Welcome to the Fancy Chancey blog!</h1>
 
+
+<%= will_paginate @posts, renderer: FoundationPagination::Rails %>
 <%= render :partial => @posts %>
 

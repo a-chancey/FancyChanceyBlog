@@ -32,6 +32,7 @@ gem 'devise'
 gem 'redcarpet'
 gem 'rouge'
 
+gem 'will_paginate-foundation'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
