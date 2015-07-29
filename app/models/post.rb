@@ -21,5 +21,11 @@ class Post < ActiveRecord::Base
             "Nobody"
         end
     end
+
+
+    def recent(count)
+        return Post.published.order('id DESC')
+    end
+
     
 end
